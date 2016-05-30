@@ -1,8 +1,8 @@
 Options +FollowSymLinks
-
+Options -Indexes
 Options -MultiViews
 RewriteEngine On
-Options -Indexes
+
 
 RewriteBase /own/
 
