@@ -11,7 +11,6 @@ class Router
     
     function __construct()
     {
-        //include CONFIG_PATH.'/Routes.php';
         $routes = array();
         include (CONFIG_PATH.'/Routes.php');
         $this->routes = $routes;
