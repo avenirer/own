@@ -11,7 +11,10 @@ class Router
     
     function __construct()
     {
-        include CONFIG_PATH.'/Routes.php';
+        //include CONFIG_PATH.'/Routes.php';
+        $routes = array();
+        include (CONFIG_PATH.'/Routes.php');
+        $this->routes = $routes;
         $this->default_controller = ucfirst($this->routes['default_controller']);
         $this->method = $this->routes['default_method'];
         $this->path_arr = $this->_parse_path();
@@ -55,8 +58,9 @@ class Router
 
     private function _parse_path()
     {
-        $path = $_GET['path'];
-        $path = filter_var(trim($path, '/'), FILTER_SANITIZE_URL);
+        $path = filter_var(trim($_GET['path'],'/'), FILTER_SANITIZE_URL);
+        $path = str_replace(array('//', '../'), '/', $path);
+
         $path_arr = explode('/',$path);
 
         if(strlen($path)== 0 || empty($path_arr)){
